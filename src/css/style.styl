@@ -1,0 +1,58 @@
+@import 'yeticss'
+
+$space ?= 1.875rem
+$margin ?= 1rem
+.grid-flex-cell-1of2
+  padding: $space
+  width: "calc(50% - (%s * 2))" % $margin
+
+
+
+body
+  background: linear-gradient(120deg, rgb(237, 22, 103), rgb(57, 20, 90));
+  background: -webkit-linear-gradient(120deg, rgb(237, 22, 103), rgb(57, 20, 90));
+  background-repeat: no-repeat
+  background-attachment: fixed
+
+
+
+
+
+.Header
+  background-color: #fff
+  height: 21.875rem
+  margin-bottom: 5rem
+  &__container
+    position: relative
+    text-align: center
+    top: 50%
+    transform: translateY(-50%)
+  &__title
+    font-weight: 700
+    letter-spacing: -.25rem
+    text-transform: uppercase
+  &__tagline
+    font-size: 1rem 
+    text-transform: uppercase
+
+
+
+
+
+.Article
+  background-color: rgba(#fff, 0.9)
+  padding: 3rem
+  &__card
+    background-color: rgba(#fff, 0.9)
+    border: 1px solid $gray-light
+    border-radius: 0.25rem
+    height 37.5rem
+    margin: 0 1rem 2rem
+    overflow: hidden
+    transition: box-shadow .3s
+    &:hover
+      box-shadow: 2px 2px 20px rgba(0,0,0,0.8)
+  img
+    height: auto
+    width: 100% !important
+    // padding: 1rem 4rem 4rem

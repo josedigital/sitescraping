@@ -1,0 +1,8 @@
+extends _layout
+
+block content
+  .Article.container
+    .grid-flex-container
+      .grid-flex-cell
+        h3= data.title
+        div !{data.contentHTML}

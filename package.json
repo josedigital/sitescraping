@@ -1,0 +1,47 @@
+{
+  "name": "express-bp",
+  "version": "1.0.0",
+  "description": "express boilerplate and starter",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alexrdz",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.2",
+    "pug": "^2.0.0-beta6",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "axis": "^0.6.1",
+    "browser-sync": "^2.18.2",
+    "cssnano": "^3.8.2",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-stylus": "^2.6.0",
+    "gulp-uglify": "^2.0.0",
+    "minimist": "^1.2.0",
+    "postcss-cssnext": "^2.9.0",
+    "poststylus": "^0.2.3",
+    "rupture": "^0.6.2",
+    "underscore-plus": "^1.6.6",
+    "yeticss": "^7.3.0"
+  }
+}

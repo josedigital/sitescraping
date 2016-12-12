@@ -1,0 +1,19 @@
+extends _layout
+
+block content
+  .container
+    .grid-flex-container
+      each val, index in data
+        .Article__card.grid-flex-cell-1of2
+          h3 <a href='/articles/#{val.slug}'>#{val.title}</a>  
+          <br>
+          if(val.img)
+            <a href='/articles/#{val.slug}'><img src='#{val.img}' /></a>
+            div= val.contentText
+            h6 <a href='#{val.link}'>Read at Bandcamp →</a>
+          else
+            div !{val.contentHTML}
+            h6 <a href='#{val.link}'>Read at Bandcamp →</a>
+      else
+        h3 No articles found
+
