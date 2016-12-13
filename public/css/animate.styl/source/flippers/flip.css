@@ -1,0 +1,4 @@
+.flip {
+  -webkit-animation-name: flip;
+          animation-name: flip;
+}

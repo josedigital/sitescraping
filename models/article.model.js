@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const CommentSchema = require('./comment.model');
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
@@ -10,7 +11,11 @@ const ArticleSchema = new Schema({
   link: String,
   contentHTML: String,
   contentText: String,
-  img: String  
+  img: String,
+  comments: {
+    type: Schema.Types.ObjectId,
+    ref: 'comment'
+  }
 });
 
 // middleware - creates article slug

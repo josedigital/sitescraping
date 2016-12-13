@@ -1,5 +1,6 @@
 @import 'yeticss'
 
+
 $space ?= 1.875rem
 $margin ?= 1rem
 .grid-flex-cell-1of2
@@ -41,6 +42,7 @@ body
 
 .Article
   background-color: rgba(#fff, 0.9)
+  margin-bottom: 2rem
   padding: 3rem
   &__card
     background-color: rgba(#fff, 0.9)
@@ -56,3 +58,21 @@ body
     height: auto
     width: 100% !important
     // padding: 1rem 4rem 4rem
+
+
+.Comment-form
+  height: 100%
+  margin-bottom: 1rem
+  overflow: auto
+  transition: opacity .3s ease-in, height .3s step-start;
+  &__content
+    width: 100%
+
+
+
+.is-hidden
+  height: 0
+  opacity: 0
+  overflow: hidden
+  transition-timing-function: linear, step-end
+

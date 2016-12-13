@@ -6,6 +6,7 @@ const request = require('request');
 const rp      = require('request-promise');
 const cheerio = require('cheerio');
 const Article = require('../models/article.model');
+const Comment = require('../models/comment.model.js');
 const mongoose = require('mongoose');
 // mpromise is deprecated
 mongoose.Promise = global.Promise;
@@ -43,7 +44,7 @@ router.get('/articles', (req, res) => {
       
       let posts = content.children('.post');
       posts.each((i, elm) => {
-        // console.log($(this).find('.entry-title').text());
+        // save posts to data object
         data[i] = {
           title: $(elm).find('.entry-title').text(),
           link:  $(elm).find('.entry-title a').attr('href'),
@@ -53,17 +54,21 @@ router.get('/articles', (req, res) => {
         }
 
         // add articles to db if not in db
-        if ( !Article.findOne({ title: data[i].slug }) ) {
-          let newArticle = new Article(data[i]);
-          newArticle.save();
-        }
+        Article.find()
+          .then((articles) => {
+            if(articles.length < posts.length) {
+              let newArticle = new Article(data[i]);
+              newArticle.save();
+            }
+            if( i === (posts.length - 1)) {
+              res.render('articles', {data: articles});
+            }
+          });
+        
           
       });
-      Article.find()
-      .then((articles) => {
-        console.log(articles);
-        res.render('articles', {data: articles});
-      });
+      
+      
       
     })
     .catch((err) => {
@@ -86,6 +91,24 @@ router.get('/articles/:slug', (req, res) => {
 
 
 
+
+router.post('/articles/add-comment', function (req, res) {
+  // save comment
+  // find the article
+  // update it with new comment 
+  console.log(req.body.commentContent);
+  let commentText = req.body.commentContent;
+  let articleId = req.body.articleId;
+  const comment = new Comment({
+    content: commentText,
+    articleId: articleId
+  });
+  comment.save();
+  
+  
+  // res.render('_PARITIAL')
+  res.json(req.body);
+});
 
 
 

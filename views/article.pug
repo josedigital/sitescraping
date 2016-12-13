@@ -6,3 +6,13 @@ block content
       .grid-flex-cell
         h3= data.title
         div !{data.contentHTML}
+      .grid-flex-cell-1of4
+        h6
+          a(href="#", title="title").js-form-trigger + Add a comment  
+        .Comment-form.is-hidden
+          form(action="/articles/add-comment", method="POST")
+            .form-element
+              textarea(name="comment", placeholder="Type your comment here").form-input.Comment-form__content
+              <input type="hidden" value='#{data._id}' name="article_id" class="js-article-id" />
+            .form-element
+              input(type="submit").button.submit-button

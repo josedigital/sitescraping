@@ -1,0 +1,4 @@
+.wobble {
+  -webkit-animation-name: wobble;
+          animation-name: wobble;
+}

@@ -1604,6 +1604,7 @@ body {
 }
 .Article {
   background-color: rgba(255,255,255,0.9);
+  margin-bottom: 2rem;
   padding: 3rem;
 }
 .Article__card {
@@ -1622,4 +1623,21 @@ body {
 .Article img {
   height: auto;
   width: 100% !important;
+}
+.Comment-form {
+  height: 100%;
+  margin-bottom: 1rem;
+  overflow: auto;
+  -webkit-transition: opacity 0.3s ease-in, height 0.3s step-start;
+  transition: opacity 0.3s ease-in, height 0.3s step-start;
+}
+.Comment-form__content {
+  width: 100%;
+}
+.is-hidden {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition-timing-function: linear, step-end;
+          transition-timing-function: linear, step-end;
 }

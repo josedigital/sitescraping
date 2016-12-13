@@ -1,0 +1,4 @@
+.rotateIn {
+  -webkit-animation-name: rotateIn;
+          animation-name: rotateIn;
+}

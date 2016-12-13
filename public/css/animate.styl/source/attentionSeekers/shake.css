@@ -1,0 +1,4 @@
+.shake {
+  -webkit-animation-name: shake;
+          animation-name: shake;
+}

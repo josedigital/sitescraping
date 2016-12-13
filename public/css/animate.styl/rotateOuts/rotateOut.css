@@ -1,0 +1,4 @@
+.rotateOut {
+  -webkit-animation-name: rotateOut;
+          animation-name: rotateOut;
+}
