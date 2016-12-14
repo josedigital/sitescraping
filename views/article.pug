@@ -2,7 +2,6 @@ extends _layout
 
 block content
   .container
-    .comments &nbsp;
     p
       a(href="/articles").button &#8592;
   .Article.container
@@ -22,3 +21,6 @@ block content
       .grid-flex-cell
         h3= data.title
         div !{data.contentHTML}
+      .grid-flex-cell-1of3
+        .Comments
+          h3 Comments

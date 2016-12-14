@@ -1,9 +1,13 @@
+'use strict';
+
 window.$ = (selector) => document.querySelector(selector);
 
 
-let trigger = $('.js-form-trigger');
-let form = $('.Comment-form');
-let submitButton = $('.submit-button');
+const trigger = $('.js-form-trigger');
+const form = $('.Comment-form');
+const formContent = $('.Comment-form__content');
+const submitButton = $('.submit-button');
+const commentsDiv = $('.Comments');
 
 trigger.addEventListener('click', function (e) {
   e.preventDefault();
@@ -29,7 +33,8 @@ submitButton.addEventListener('click', function (e) {
     if (request.status >= 200 && request.status < 400) {
       // Success!
       var data = JSON.parse(request.responseText);
-      $('.comments').innerHTML += data.content;
+      formContent.value = '';
+      $('.Comments').innerHTML += data.content;
     } else {
       // We reached our target server, but it returned an error
       console.log('something went wrong on the server.');
@@ -41,5 +46,30 @@ submitButton.addEventListener('click', function (e) {
   request.send(JSON.stringify(comment));
 
 });
+
+
+
+
+
+// let pathArray = window.location.pathname.split( '/' );
+// const slug = pathArray[2];
+let articleId = $('.js-article-id').value;
+var request = new XMLHttpRequest();
+request.open('GET', '/comments/'+articleId);
+request.setRequestHeader('Content-Type', 'application/json');
+request.onload = function() {
+    if (request.status === 200) {
+        console.log(request.responseText);
+        let comments = JSON.parse(request.responseText);
+        for (var i in comments) {
+          commentsDiv.innerHTML += '<p>' + comments[i] + '</p>';
+        }
+        // console.log(typeof comments);
+    }
+    else {
+        alert('Request failed.  Returned status of ' + request.status);
+    }
+};
+request.send();
 
 

@@ -1626,6 +1626,10 @@ body {
   height: auto;
   width: 100% !important;
 }
+.Comments {
+  background-color: rgba(255,255,255,0.8);
+  padding: 1rem;
+}
 .Comment-form {
   height: 100%;
   margin-bottom: 1rem;

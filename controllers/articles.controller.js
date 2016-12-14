@@ -88,10 +88,20 @@ router.get('/articles/:slug', (req, res) => {
     .then((article) => {
       res.render('article', { data: article });
     }); 
-  
 });
 
-
+router.get('/comments/:articleId', (req, res) => {
+  const articleId = req.params.articleId;
+  let commentObj = {};
+  Comment.find({ articleId: articleId })
+    .then((comment) => {
+      comment.map(function (commentObject) {
+        console.log(commentObject.content);
+        commentObj[commentObject._id] = commentObject.content;
+      });
+      res.json(commentObj);
+    });
+});
 
 
 router.post('/articles/add-comment', function (req, res) {
@@ -107,13 +117,6 @@ router.post('/articles/add-comment', function (req, res) {
     articleId: articleId
   });
   var newComment = new Comment(comment);
-  newComment.save();
-  // Article.findOne({ _id: articleId })
-  //   .populate('comments')
-  //   .exec(function (err, article) {
-  //     if (err) return handleError(err);
-  //     console.log('The creator is ', article.comments);
-  //   });
   newComment.save(function (err, comment) {
     if(err) {
       console.log(err);
