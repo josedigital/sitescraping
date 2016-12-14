@@ -1630,6 +1630,9 @@ body {
   background-color: rgba(255,255,255,0.8);
   padding: 1rem;
 }
+.Comments__text {
+  border-bottom: 1px solid #b7c0c3;
+}
 .Comment-form {
   height: 100%;
   margin-bottom: 1rem;

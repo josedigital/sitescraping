@@ -105,10 +105,6 @@ router.get('/comments/:articleId', (req, res) => {
 
 
 router.post('/articles/add-comment', function (req, res) {
-  // save comment
-  // find the article
-  // update it with new comment 
-  // console.log(req.body.commentContent);
   let commentText = req.body.commentContent;
   let articleId = req.body.articleId;
 
@@ -140,6 +136,21 @@ router.post('/articles/add-comment', function (req, res) {
   
 });
 
+
+
+
+
+router.post('/articles/delete-comment/:commentId', function (req, res) {
+  const commentId = req.params.commentId
+  Comment.remove({ '_id': commentId })
+	.exec(function(err, doc) {
+		if (err) {
+			console.log(err);
+		} else {
+      console.log(doc);
+		}
+	});
+});
 
 
 
