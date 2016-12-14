@@ -13,7 +13,7 @@ trigger.addEventListener('click', function (e) {
 submitButton.addEventListener('click', function (e) {
   e.preventDefault();
   let content = $('.Comment-form__content').value;
-  let articleId = $('.js-article-id');
+  let articleId = $('.js-article-id').value;
   
   let comment = { 
     commentContent: content,
@@ -29,7 +29,7 @@ submitButton.addEventListener('click', function (e) {
     if (request.status >= 200 && request.status < 400) {
       // Success!
       var data = JSON.parse(request.responseText);
-      console.log(data);
+      $('.comments').innerHTML += data.content;
     } else {
       // We reached our target server, but it returned an error
       console.log('something went wrong on the server.');
@@ -41,8 +41,5 @@ submitButton.addEventListener('click', function (e) {
   request.send(JSON.stringify(comment));
 
 });
-
-
-
 
 

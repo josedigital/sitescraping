@@ -9,13 +9,16 @@
   "author": "alexrdz",
   "license": "MIT",
   "dependencies": {
+    "axis": "^0.6.1",
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
     "express": "^4.14.0",
+    "lodash": "^4.17.2",
     "mongoose": "^4.7.2",
     "pug": "^2.0.0-beta6",
     "request": "^2.79.0",
-    "request-promise": "^4.1.1"
+    "request-promise": "^4.1.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",

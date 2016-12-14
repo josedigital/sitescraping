@@ -8,6 +8,7 @@ const cheerio = require('cheerio');
 const Article = require('../models/article.model');
 const Comment = require('../models/comment.model.js');
 const mongoose = require('mongoose');
+const _       = require('underscore');
 // mpromise is deprecated
 mongoose.Promise = global.Promise;
 
@@ -28,7 +29,7 @@ db.once('open', function() {
 
 // all articles
 router.get('/articles', (req, res) => {
-  let data = {};
+  
   let options = {
     uri: 'https://daily.bandcamp.com/',
     transform: (body) => {
@@ -39,6 +40,8 @@ router.get('/articles', (req, res) => {
   rp(options)
     .then(($) => {
       let content = $('#content');
+      let data = {};
+      let articles;
       // let postText = content.children('.post').first().text();
       // data.postText = postText;
       
@@ -52,21 +55,20 @@ router.get('/articles', (req, res) => {
           contentText: $(elm).find('.entry-content').text(),
           img: $(elm).find('.entry-content').find('img').first().attr('src')
         }
-
-        // add articles to db if not in db
-        Article.find()
-          .then((articles) => {
-            if(articles.length < posts.length) {
-              let newArticle = new Article(data[i]);
-              newArticle.save();
-            }
-            if( i === (posts.length - 1)) {
-              res.render('articles', {data: articles});
-            }
-          });
-        
-          
+     
       });
+
+      _.forEach(data, function (article) {
+        let newArticle = new Article(article);
+        newArticle.save();
+      });
+
+      Article.find()
+        .then((articles) => {
+          res.render('articles', {data: articles});
+        });
+      
+      // console.log(data);
       
       
       
@@ -96,18 +98,43 @@ router.post('/articles/add-comment', function (req, res) {
   // save comment
   // find the article
   // update it with new comment 
-  console.log(req.body.commentContent);
+  // console.log(req.body.commentContent);
   let commentText = req.body.commentContent;
   let articleId = req.body.articleId;
-  const comment = new Comment({
+
+  let comment = new Comment({
     content: commentText,
     articleId: articleId
   });
-  comment.save();
-  
+  var newComment = new Comment(comment);
+  newComment.save();
+  // Article.findOne({ _id: articleId })
+  //   .populate('comments')
+  //   .exec(function (err, article) {
+  //     if (err) return handleError(err);
+  //     console.log('The creator is ', article.comments);
+  //   });
+  newComment.save(function (err, comment) {
+    if(err) {
+      console.log(err);
+    } else {
+      Article.findOneAndUpdate({'_id': articleId},{$push: {'comments':comment}},{new: true })
+          .exec(function(err, doc) {
+            if (err) {
+              console.log(err);
+            } else {
+              Comment.findOne({ _id: comment._id })
+              .then((comm) => {
+                res.json(comm);
+              })
+              
+            }
+          });
+    }
+  })
   
   // res.render('_PARITIAL')
-  res.json(req.body);
+  
 });
 
 

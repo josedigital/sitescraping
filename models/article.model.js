@@ -3,19 +3,24 @@ const CommentSchema = require('./comment.model');
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
-  title: String,
-  slug: {
+  title: {
     type: String,
-    unique: true
+    unique: true,
+    index: true
   },
-  link: String,
+  slug: {
+    type: String
+  },
+  link: {
+    type: String
+  },
   contentHTML: String,
   contentText: String,
   img: String,
-  comments: {
+  comments: [{
     type: Schema.Types.ObjectId,
     ref: 'comment'
-  }
+  }]
 });
 
 // middleware - creates article slug

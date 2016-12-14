@@ -1,3 +1,5 @@
+@import 'axis'
+@import 'rupture'
 @import 'yeticss'
 
 
@@ -30,7 +32,7 @@ body
     transform: translateY(-50%)
   &__title
     font-weight: 700
-    letter-spacing: -.25rem
+    letter-spacing: -.125rem
     text-transform: uppercase
   &__tagline
     font-size: 1rem 
@@ -42,6 +44,8 @@ body
 
 .Article
   background-color: rgba(#fff, 0.9)
+  border-radius: 0.25rem
+  box-shadow: -4px -4px 20px rgba(0,0,0,0.8)
   margin-bottom: 2rem
   padding: 3rem
   &__card
@@ -53,7 +57,7 @@ body
     overflow: hidden
     transition: box-shadow .3s
     &:hover
-      box-shadow: 2px 2px 20px rgba(0,0,0,0.8)
+      box-shadow: -2px -2px 20px rgba(0,0,0,0.8)
   img
     height: auto
     width: 100% !important

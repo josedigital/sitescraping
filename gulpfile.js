@@ -15,6 +15,7 @@ const sourcemaps   = require('gulp-sourcemaps');
 const stylus       = require('gulp-stylus');
 const poststylus   = require('poststylus');
 const autoprefixer = require('autoprefixer');
+const axis         = require('axis');
 const rupture      = require('rupture');
 const yeticss      = require('yeticss');
 //-- js
@@ -41,7 +42,7 @@ gulp.task('stylus', () => {
     .pipe(plumber())
     .pipe(stylus({
       use: [
-        poststylus(['autoprefixer',]), yeticss(), rupture()
+        poststylus(['autoprefixer',]), axis(), yeticss(), rupture()
       ]
     }))
     .pipe(gulp.dest('public/css'));

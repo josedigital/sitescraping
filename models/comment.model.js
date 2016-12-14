@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
   content: String,
-  articlId: String
+  articleId: String
 });
 
 

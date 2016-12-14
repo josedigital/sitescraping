@@ -1,12 +1,13 @@
 extends _layout
 
 block content
+  .container
+    .comments &nbsp;
+    p
+      a(href="/articles").button &#8592;
   .Article.container
     .grid-flex-container
       .grid-flex-cell
-        h3= data.title
-        div !{data.contentHTML}
-      .grid-flex-cell-1of4
         h6
           a(href="#", title="title").js-form-trigger + Add a comment  
         .Comment-form.is-hidden
@@ -16,3 +17,8 @@ block content
               <input type="hidden" value='#{data._id}' name="article_id" class="js-article-id" />
             .form-element
               input(type="submit").button.submit-button
+
+    .grid-flex-container
+      .grid-flex-cell
+        h3= data.title
+        div !{data.contentHTML}
